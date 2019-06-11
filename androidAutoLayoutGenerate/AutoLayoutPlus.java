@@ -7,8 +7,8 @@ public class AutoLayoutPlus {
 	
 
     public static void main(String[] args) {
-        int baseW = 375;
-        int baseH = 667;
+        int baseW = 750;
+        int baseH = 1334;
         String addition = "";
         try {
             if (args.length >= 3) {

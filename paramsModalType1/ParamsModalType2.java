@@ -13,10 +13,10 @@ import tools.LogUtils;
 
 public class ParamsModalType2 {
 	private static String TAG = "ParamsModalType1";
-	private static String exp1 = "/\\*\\*[\\s\\*A-Za-z._@]*[\\S]*[\\s\\*A-Za-z._@]*/\\s*(private)\\s[LongDoubleBooleanDateStringFloatIntegerChar]*\\s[A-Za-z_1-9]*;";
+	private static String exp1 = "/\\*\\*[\\s\\*A-Za-z._@]*[\\S]*[\\s\\*A-Za-z._@]*/\\s*(private)\\s+[LongDoubleBooleanDateStringFloatIntegerCharlongdoublebooleandatestringfloatintegerchar]*\\s[A-Za-z_1-9]*;";
 	private static String exp2 = "\\*[^\\n][^T^@][\\u4e00-\\u9fa5\\S]+";
-	private static String exp3 = "(private)\\s*[LongDoubleBooleanDateStringFloatIntegerChar]*\\s*[A-Za-z_1-9]*;";
-	private static String saveParams = "@ApiModelProperty(value = \"description\")\r\n    ";
+	private static String exp3 = "(private)\\s+[LongDoubleBooleanDateStringFloatIntegerCharlongdoublebooleandatestringfloatintegerchar]*\\s*[A-Za-z_1-9]*;";
+	private static String saveParams = "@ApiModelProperty(value = \"description\",hidden = false)\r\n    ";
 	private static StringBuffer saveContent = new StringBuffer("");
 	
 	private static String sourcePath = "C:\\Users\\LorenWang\\Desktop\\paramsModal\\source.txt";
@@ -26,9 +26,9 @@ public class ParamsModalType2 {
 		// TODO Auto-generated method stub
 		
 		
-		LogUtils.logI(TAG, "¿ªÊ¼¸ñÊ½»¯");
+		LogUtils.logI(TAG, "å¼€å§‹æ ¼å¼åŒ–");
 		File sourceFile = new File(sourcePath);
-		//ÅĞ¶ÏÊäÈëÎÄ¼ş¼ĞÊÇ·ñ´æÔÚ
+		//åˆ¤æ–­è¾“å…¥æ–‡ä»¶å¤¹æ˜¯å¦å­˜åœ¨
 		File outputFile = new File(outputPath);
 		if(!outputFile.getParentFile().exists()) {
 			outputFile.getParentFile().mkdirs();
@@ -37,18 +37,18 @@ public class ParamsModalType2 {
 		byte[] readBytes = IOUtils.getInstance().readBytes(sourceFile);
 		List<String> list = new ArrayList<>();
 		if(readBytes != null) {
-			LogUtils.logI(TAG, "Êı¾İ»ñÈ¡³É¹¦");
+			LogUtils.logI(TAG, "æ•°æ®è·å–æˆåŠŸ");
 			try {
 				String readStr = new String(readBytes,"utf-8");
 				
-				//²ğ·Ö×Ö¶Î
+				//æ‹†åˆ†å­—æ®µ
 				Pattern pattern = Pattern.compile(exp1);
 	    		Matcher matcher = pattern.matcher(readStr);
 	    		while(matcher.find()) {
 	    			list.add(matcher.group());
 	    		}
 	    		
-	    		//¿ªÊ¼½«Ã¿¸ö×Ö¶Î½øĞĞ¸ñÊ½»¯
+	    		//å¼€å§‹å°†æ¯ä¸ªå­—æ®µè¿›è¡Œæ ¼å¼åŒ–
 	    		Iterator<String> iterator = list.iterator();
 	    		String description = null;
 	    		String type = null;
@@ -59,13 +59,13 @@ public class ParamsModalType2 {
 	    		while (iterator.hasNext()) {
 					content = iterator.next();
 					paramsData = content.intern();
-					//»ñÈ¡×¢ÊÍÃèÊö
+					//è·å–æ³¨é‡Šæè¿°
 					pattern = Pattern.compile(exp2);
 					matcher = pattern.matcher(paramsData);
 					while(matcher.find()) {
 						description = matcher.group();
 					}
-					//»ñÈ¡±äÁ¿ÀàĞÍÒÔ¼°±äÁ¿Ãû×Ö·û´®
+					//è·å–å˜é‡ç±»å‹ä»¥åŠå˜é‡åå­—ç¬¦ä¸²
 					pattern = Pattern.compile(exp3);
 					matcher = pattern.matcher(paramsData);
 					if(matcher.find()) {
@@ -78,17 +78,17 @@ public class ParamsModalType2 {
 						LogUtils.logI(TAG, name);
 					}
 					saveContent.append(saveParams.replace("description", description.replace("* ", "")))
-					.append(content).append("\r\n    ");
+					.append(content.replace("Date", "Long")).append("\r\n    ");
 				}
 	    		IOUtils.getInstance().writeToFile(outputFile, saveContent.toString());
-	    		LogUtils.logI(TAG, "Êı¾İ¸ñÊ½»¯Íê³É£¬²¢ÒÑÊä³ö");
+	    		LogUtils.logI(TAG, "æ•°æ®æ ¼å¼åŒ–å®Œæˆï¼Œå¹¶å·²è¾“å‡º");
 			} catch (UnsupportedEncodingException e) {
-				LogUtils.logI(TAG, "Êı¾İ¸ñÊ½»¯Òì³££¬Çë¼ì²éÊı¾İÔ´");
+				LogUtils.logI(TAG, "æ•°æ®æ ¼å¼åŒ–å¼‚å¸¸ï¼Œè¯·æ£€æŸ¥æ•°æ®æº");
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else {
-			LogUtils.logI(TAG, "Êı¾İ»ñÈ¡Ê§°Ü");
+			LogUtils.logI(TAG, "æ•°æ®è·å–å¤±è´¥");
 		}
 	}
 }

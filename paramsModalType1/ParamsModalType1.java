@@ -18,9 +18,9 @@ import tools.LogUtils;
 public class ParamsModalType1 {
 	
 	private static String TAG = "ParamsModalType1";
-	private static String exp1 = "/\\*\\*[\\s\\*A-Za-z._@]*[\\S]*[\\s\\*A-Za-z._@]*/\\s*(private)\\s[LongDoubleBooleanDateStringFloatIntegerChar]*\\s[A-Za-z_1-9]*;";
+	private static String exp1 = "/\\*\\*[\\s\\*A-Za-z._@]*[\\S]*[\\s\\*A-Za-z._@]*/\\s*(private)\\s+[LongDoubleBooleanDateStringFloatIntegerCharlongdoublebooleandatestringfloatintegerchar]*\\s[A-Za-z_1-9]*;";
 	private static String exp2 = "\\*[^\\n][^T^@][\\u4e00-\\u9fa5\\S]+";
-	private static String exp3 = "(private)\\s*[LongDoubleBooleanDateStringFloatIntegerChar]*\\s*[A-Za-z_1-9]*;";
+	private static String exp3 = "(private)\\s*[LongDoubleBooleanDateStringFloatIntegerCharlongdoublebooleandatestringfloatintegerchar]*\\s*[A-Za-z_1-9]*;";
 	private static String saveParams = "{type--name--description}，，，，，，，，，，，，，，，，，，，，，，，，，，，，，，，，，，，，，，，，，，，，，，";
 	private static StringBuffer saveContent = new StringBuffer("");
 	
